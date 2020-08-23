@@ -48,12 +48,15 @@ new Picture('wine-glass', './img/wine-glass.jpg');
 
 //function time
 function renderImages() {
-  imageElOne.src = imgArray[0].src;
-  imageElTwo.src = imgArray[1].src;
-  imageElThree.src = imgArray[2].src;
+  var imgOne = imgArray [randomNumber(imgArray.length)];
+
+  var imgTwo = imgArray [randomNumber(imgArray.length)];
+
+  var imageElThree = imgArray [randomNumber (imgArray.length)];
 }
 
 //random numbers
 function randomNumber() {
-  
+  return Math.floor(Math.random() * max)
 }
+

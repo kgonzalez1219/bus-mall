@@ -8,3 +8,4 @@ commit 5 - constructor
 commit 6 - array
 commit 7 - objects
 commit 8 - variables and functions and stuff
+commit 9 - variable stuff
