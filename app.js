@@ -2,6 +2,9 @@
 
 console.log('Hello World');
 
+//global schtuff
+var imgArray = [];
+
 //stuff and things
 // constructor for tha imgs
 
@@ -10,4 +13,6 @@ function Image(name, src) {
   this.clicked = 0;
   this.src = src;
   this.name = name;
+
+  imgArray.push(this);
 }
