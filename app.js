@@ -52,7 +52,20 @@ function renderImages() {
 
   var imgTwo = imgArray [randomNumber(imgArray.length)];
 
-  var imageElThree = imgArray [randomNumber (imgArray.length)];
+  var imgThree = imgArray [randomNumber (imgArray.length)];
+
+  while(imgOne === imgTwo || imageElThree) {
+    imgTwo.src = imgArray[randomNumber(imgArray.length)];
+  }
+
+  imageElOne.src = imgOne.src;
+  imageElTwo.src = imgTwo.src;
+  imageElThree.src = imgThree.src;
+
+  imageElOne.alt = imgOne.name;
+  imageElTwo.alt = imgTwo.name;
+  imageElThree.alt = imgThree.name;
+
 }
 
 //random numbers
