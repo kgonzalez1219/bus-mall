@@ -5,3 +5,7 @@
 body { 
   background-color: rgb(18, 143, 143);
 }
+
+img {
+  height: 350px;
+}
