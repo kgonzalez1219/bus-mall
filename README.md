@@ -11,3 +11,4 @@ commit 8 - variables and functions and stuff
 commit 9 - variable stuff
 commit 10 - loop
 commit 11 - event listeners
+commit 12 - things are rendering!!!
