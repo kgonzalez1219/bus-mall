@@ -7,6 +7,7 @@ var imgArray = [];
 var renderArray = [];
 var click = 0;
 var clickTillYouCantClickNoMore = 25;
+var section = document.getElementById('results');
 
 var imageElOne = document.getElementById('image-one');
 var imageElTwo = document.getElementById('image-two');
@@ -104,7 +105,7 @@ imageElTwo.addEventListener('click', eventHandler);
 imageElThree.addEventListener('click', eventHandler);
 
 function eventHandler(event) {
-  console.log('immma throw my comp');
+  console.log('event.target.alt');
   click++;
   for (var i = 0; i < imgArray.length; i++) {
     if (imgArray[i].name === event.target.alt); {
@@ -117,9 +118,18 @@ function eventHandler(event) {
     imageElOne.removeEventListener('click', eventHandler);
     imageElTwo.removeEventListener('click', eventHandler);
     imageElThree.removeEventListener('click', eventHandler);
+
+    //render results
+    for(i = 0; i < imgArray.length; i++) {
+      var clickedAmount = document.createElement('p');
+      clickedAmount.textContent = `${imgArray[i].alt}, clicked ${imgArray[i].clicked} times, viewed ${imgArray[i].viewed} times.`;
+      section.append(clickedAmount);
+    }
   }
 
 }
+
+
 
 renderImages(); //calling functions
 doABarrelRollIntoARenderArray();
