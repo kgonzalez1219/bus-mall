@@ -122,7 +122,7 @@ function eventHandler(event) {
     //render results
     for(i = 0; i < imgArray.length; i++) {
       var clickedAmount = document.createElement('p');
-      clickedAmount.textContent = `${imgArray[i].alt}, clicked ${imgArray[i].clicked} times, viewed ${imgArray[i].viewed} times.`;
+      clickedAmount.textContent = `${imgArray[i].name}, clicked ${imgArray[i].clicked} times, viewed ${imgArray[i].viewed} times.`;
       section.append(clickedAmount);
     }
   }
