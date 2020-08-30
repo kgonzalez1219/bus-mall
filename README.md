@@ -12,3 +12,4 @@ commit 9 - variable stuff
 commit 10 - loop
 commit 11 - event listeners
 commit 12 - things are rendering!!!
+commit 13 - added img 3 event listener and tinkered with click variable.

@@ -50,11 +50,11 @@ new Picture('wine-glass', './img/wine-glass.jpg');
 
 //function time
 function renderImages() {
-  var imgOne = imgArray[randomNumber(imgArray.length)];
-  var imgTwo = imgArray[randomNumber(imgArray.length)];
-  var imgThree = imgArray[randomNumber(imgArray.length)];
+   var imgOne = imgArray[randomNumber(imgArray.length)];
+   var imgTwo = imgArray[randomNumber(imgArray.length)];
+   var imgThree = imgArray[randomNumber(imgArray.length)];
 
-
+  
 
   while (imgOne === imgTwo) {
     imgTwo = imgArray[randomNumber(imgArray.length)];
@@ -82,8 +82,6 @@ function randomNumber(max) {
 }
 
 
-
-
 function doABarrelRollIntoARenderArray() {
   while (renderArray.length > 0) {
     renderArray.pop();
@@ -95,23 +93,33 @@ function doABarrelRollIntoARenderArray() {
     }
     renderArray.push(i);
   }
+  //console.log(renderArray);
 }
 
 
 
-//event handler for tha broken thing
+//event handler for tha UNbroken thing
 imageElOne.addEventListener('click', eventHandler);
 imageElTwo.addEventListener('click', eventHandler);
+imageElThree.addEventListener('click', eventHandler);
 
 function eventHandler(event) {
   console.log('immma throw my comp');
+  click++;
   for (var i = 0; i < imgArray.length; i++) {
     if (imgArray[i].name === event.target.alt); {
-      imgArray[i].clicked++;
+      imgArray[i].click++;
       renderImages();
     }
   }
+
+  if (click === clickTillYouCantClickNoMore) {
+    imageElOne.removeEventListener('click', eventHandler);
+    imageElTwo.removeEventListener('click', eventHandler);
+    imageElThree.removeEventListener('click', eventHandler);
+  }
+
 }
 
-renderImages(); //calling it
+renderImages(); //calling functions
 doABarrelRollIntoARenderArray();
