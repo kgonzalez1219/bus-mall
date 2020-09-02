@@ -6,9 +6,9 @@
 var imgArray = [];
 var renderArray = [];
 var click = 0;
-var clickTillYouCantClickNoMore = 25;
+var clickTillYouCantClickNoMore = 5;
 var section = document.getElementById('results');
-
+var container = document.getElementById('container');
 var imageElOne = document.getElementById('image-one');
 var imageElTwo = document.getElementById('image-two');
 var imageElThree = document.getElementById('image-three');
@@ -50,12 +50,14 @@ new Picture('wine-glass', './img/wine-glass.jpg');
 //console.log(imgArray);
 
 //function time
-function renderImages() {
+  function renderImages() {
    var imgOne = imgArray[randomNumber(imgArray.length)];
    var imgTwo = imgArray[randomNumber(imgArray.length)];
    var imgThree = imgArray[randomNumber(imgArray.length)];
 
-  
+   
+
+    
 
   while (imgOne === imgTwo) {
     imgTwo = imgArray[randomNumber(imgArray.length)];
@@ -78,8 +80,9 @@ function renderImages() {
 }
 
 //random numbers
-function randomNumber(max) {
-  return Math.floor(Math.random() * max);
+function randomNumber() {
+  var num = Math.floor(Math.random() * Math.floor(imgArray.length));
+  return num;
 }
 
 
@@ -96,6 +99,9 @@ function doABarrelRollIntoARenderArray() {
   }
   //console.log(renderArray);
 }
+
+//chart
+
 
 
 
@@ -133,3 +139,10 @@ function eventHandler(event) {
 
 renderImages(); //calling functions
 doABarrelRollIntoARenderArray();
+
+
+
+
+
+
+
