@@ -50,34 +50,26 @@ new Picture('wine-glass', './img/wine-glass.jpg');
 //console.log(imgArray);
 
 //function time
-  function renderImages() {
-   var imgOne = imgArray[randomNumber(imgArray.length)];
-   var imgTwo = imgArray[randomNumber(imgArray.length)];
-   var imgThree = imgArray[randomNumber(imgArray.length)];
+function renderImages(){
+doABarrelRollIntoARenderArray();
+  imageElOne.src = imgArray[renderArray[0]].src;
+  imageElOne.alt = imgArray[renderArray[0]].name;
+  imgArray[renderArray[0]].viewed++;
 
-   
+  imageElTwo.src = imgArray[renderArray[1]].src;
+  imageElOne.alt = imgArray[renderArray[1]].name;
+  imgArray[renderArray[1]].viewed++;
 
-    
-
-  while (imgOne === imgTwo) {
-    imgTwo = imgArray[randomNumber(imgArray.length)];
-  }
-
-  imageElOne.src = imgOne.src;
-  imageElTwo.src = imgTwo.src;
-  imageElThree.src = imgThree.src;
-
-  imageElOne.alt = imgOne.name;
-  imageElTwo.alt = imgTwo.name;
-  imageElThree.alt = imgThree.name;
-
-  imgOne.viewed++;
-  imgTwo.viewed++;
-  imgThree.viewd++;
-
-  console.log(imgArray);
-
+  imageElThree.src = imgArray[renderArray[2]].src;
+  imageElOne.alt = imgArray[renderArray[2]].name;
+  imgArray[renderArray[2]].viewed++;
 }
+
+  
+
+  //console.log(imgArray);
+
+
 
 //random numbers
 function randomNumber() {
@@ -87,16 +79,14 @@ function randomNumber() {
 
 
 function doABarrelRollIntoARenderArray() {
-  while (renderArray.length > 0) {
-    renderArray.pop();
-  }
   while (renderArray.length < 3) {
-    var i = randomNumber(imgArray.length);
+    var i = randomNumber();
     while (renderArray.includes(i)) {
-      i = randomNumber(imgArray.length);
+      i = randomNumber();
     }
     renderArray.push(i);
-  }
+
+  } 
   //console.log(renderArray);
 }
 
@@ -105,28 +95,25 @@ function doABarrelRollIntoARenderArray() {
 
 
 
-//event handler for tha UNbroken thing
-imageElOne.addEventListener('click', eventHandler);
-imageElTwo.addEventListener('click', eventHandler);
-imageElThree.addEventListener('click', eventHandler);
+//event handler/listener for tha UNbroken thing
+container.addEventListener('click',eventHandler);
 
 function eventHandler(event) {
-  console.log('event.target.alt');
   click++;
-  for (var i = 0; i < imgArray.length; i++) {
-    if (imgArray[i].name === event.target.alt); {
-      imgArray[i].click++;
-      renderImages();
+  var clickevent = event.target.alt;
+  for (var i = 0; i < imgArray.length; i++){
+    if(clickevent === imgArray[i].name){
+      imgArray[i].clicked++;
     }
   }
-
+  
+ //remove event listener
   if (click === clickTillYouCantClickNoMore) {
-    imageElOne.removeEventListener('click', eventHandler);
-    imageElTwo.removeEventListener('click', eventHandler);
-    imageElThree.removeEventListener('click', eventHandler);
+    container.removeEventListener('clicks', eventHandler);
+
 
     //render results
-    for(i = 0; i < imgArray.length; i++) {
+    for (i = 0; i < imgArray.length; i++) {
       var clickedAmount = document.createElement('p');
       clickedAmount.textContent = `${imgArray[i].name}, clicked ${imgArray[i].clicked} times, viewed ${imgArray[i].viewed} times.`;
       section.append(clickedAmount);
@@ -138,7 +125,6 @@ function eventHandler(event) {
 
 
 renderImages(); //calling functions
-doABarrelRollIntoARenderArray();
 
 
 
