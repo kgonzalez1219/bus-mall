@@ -22,4 +22,4 @@ commit 17 - overhaul due to rebreaking
 //branch 4
 commit 19 - implement unshift
 commit 20 - implement chart js
-
+commit 21 - implement labelarrays/color scheme of chart
