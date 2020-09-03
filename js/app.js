@@ -4,7 +4,7 @@
 var imgArray = [];
 var renderArray = [];
 var clicks = 0;
-var enoughClicks = 5;
+var enoughClicks = 25;
 var section = document.getElementById('results');
 var list = document.getElementById('list');
 var myContainer = document.getElementById('container');
@@ -59,15 +59,15 @@ function getRandomNumber(){
   
 //maketherenderarray
 function maketherenderarray(){
-  while (renderArray.length > 0){
+  while (renderArray.length > 3){
     renderArray.pop();
   }
-  while (renderArray.length < 3){
+  while (renderArray.length < 6){
     var i = getRandomNumber();
     while (renderArray.includes(i)){
       i = getRandomNumber();
     }
-    renderArray.push(i);
+    renderArray.unshift(i);
   }
   console.log(renderArray);
 }
@@ -96,7 +96,47 @@ function renderList(){
   }
 }
 //renderChart
+function renderChart(){
+var labelsGenerator = [];
+var clickedArray = [];
+var viewedArray = [];
 
+for (var i = 0; i < imgArray.length; i++){
+  labelsGenerator.push(imgArray[i].name);
+  clickedArray.push(imgArray[i].clicked);
+  viewedArray.push(imgArray[i].viewed)
+}
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {//eslint-disable-line
+    type: 'bar',
+    data: {
+        labels: labelsGenerator,
+        datasets: [{
+            label: '# of Clicks',
+            data: clickedArray,
+            backgroundColor:'rgba(255, 206, 86, 0.2)', 
+            borderColor:'rgba(255, 159, 64, 1)', 
+            borderWidth: 2
+        },{
+          label: '# of Views',
+          data: viewedArray,
+          backgroundColor:'rgba(255, 99, 132, 0.2)', 
+          borderColor:'rgba(255, 206, 86, 1)', 
+          borderWidth: 2
+      }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+}
 
 
 
@@ -118,6 +158,7 @@ function eventHandler(event){
   if (clicks === enoughClicks){
     myContainer.removeEventListener('click', eventHandler);
     renderList();
+    renderChart();
   }
 
 }
