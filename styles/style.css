@@ -7,12 +7,37 @@ body {
 }
 
 img {
-  height: 350px;
+  max-width: 100%;
+  height: auto;
 }
 
 header {
-  font-family: 'Courier New', Courier, monospace;
+  
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: goldenrod;
   color: aliceblue;
   font-size: xx-large;
+  text-align: center;
+  margin: auto;
+  border: 30px;
 
+}
+
+/*body*/
+
+  /*container {
+  float: right;
+  border: aliceblue;
+  margin: auto;
+  background: honeydew;
+
+}*/
+
+.box {
+  display: block;
+  width: 33.33%;
+  padding: 5px;
+  margin: auto;
+
+  
 }
