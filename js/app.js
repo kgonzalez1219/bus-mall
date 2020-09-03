@@ -4,7 +4,7 @@
 var imgArray = [];
 var renderArray = [];
 var clicks = 0;
-var enoughClicks = 25;
+var enoughClicks = 5;
 var section = document.getElementById('results');
 var list = document.getElementById('list');
 var myContainer = document.getElementById('container');
@@ -12,17 +12,11 @@ var imageElOne = document.getElementById('image-one');
 var imageElTwo = document.getElementById('image-two');
 var imageElThree = document.getElementById('image-three');
 
-//stuff and things
-// constructor for tha imgs
 
-function Picture(name, src) {
-  this.viewed = 0;
-  this.clicked = 0;
-  this.name = name;
-  this.src = src;
-  imgArray.push(this);
-}
-
+var retrievedImages = localStorage.getItem('busmall-images');
+if(retrievedImages){
+  imgArray = JSON.parse(retrievedImages);
+} else {
 //tha objects
 
 new Picture('bag', './img/bag.jpg');
@@ -47,6 +41,21 @@ new Picture('water-can', './img/water-can.jpg');
 new Picture('wine-glass', './img/wine-glass.jpg');
 
 console.log(imgArray);
+}
+
+
+//stuff and things
+// constructor for tha imgs
+
+function Picture(name, src) {
+  this.viewed = 0;
+  this.clicked = 0;
+  this.name = name;
+  this.src = src;
+  imgArray.push(this);
+}
+
+
 
 
 //function time
@@ -159,6 +168,8 @@ function eventHandler(event){
     myContainer.removeEventListener('click', eventHandler);
     renderList();
     renderChart();
+    var stringifiedImages = JSON.stringify(imgArray);
+    localStorage.setItem('busmall-images',stringifiedImages);
   }
 
 }
