@@ -23,3 +23,4 @@ commit 17 - overhaul due to rebreaking
 commit 19 - implement unshift
 commit 20 - implement chart js
 commit 21 - implement labelarrays/color scheme of chart
+commit 22 - tried some css
