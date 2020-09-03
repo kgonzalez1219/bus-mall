@@ -9,3 +9,10 @@ body {
 img {
   height: 350px;
 }
+
+header {
+  font-family: 'Courier New', Courier, monospace;
+  color: aliceblue;
+  font-size: xx-large;
+
+}
