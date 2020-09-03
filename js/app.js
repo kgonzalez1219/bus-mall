@@ -117,13 +117,13 @@ var myChart = new Chart(ctx, {//eslint-disable-line
             data: clickedArray,
             backgroundColor:'rgba(255, 206, 86, 0.2)', 
             borderColor:'rgba(255, 159, 64, 1)', 
-            borderWidth: 1
+            borderWidth: 2
         },{
           label: '# of Views',
           data: viewedArray,
           backgroundColor:'rgba(255, 99, 132, 0.2)', 
           borderColor:'rgba(255, 206, 86, 1)', 
-          borderWidth: 1
+          borderWidth: 2
       }]
     },
     options: {
