@@ -1,14 +1,13 @@
-'use strict'
-
-//console.log('Hello World');
+"use strict"
 
 //global shtuff
 var imgArray = [];
 var renderArray = [];
-var click = 0;
-var clickTillYouCantClickNoMore = 5;
+var clicks = 0;
+var enoughClicks = 5;
 var section = document.getElementById('results');
-var container = document.getElementById('container');
+var list = document.getElementById('list');
+var myContainer = document.getElementById('container');
 var imageElOne = document.getElementById('image-one');
 var imageElTwo = document.getElementById('image-two');
 var imageElThree = document.getElementById('image-three');
@@ -47,87 +46,87 @@ new Picture('usb', './img/usb.gif');
 new Picture('water-can', './img/water-can.jpg');
 new Picture('wine-glass', './img/wine-glass.jpg');
 
-//console.log(imgArray);
+console.log(imgArray);
+
 
 //function time
+
+//random number
+function getRandomNumber(){
+  var num = Math.floor(Math.random() * Math.floor(imgArray.length));
+  return num;
+}
+  
+//maketherenderarray
+function maketherenderarray(){
+  while (renderArray.length > 0){
+    renderArray.pop();
+  }
+  while (renderArray.length < 3){
+    var i = getRandomNumber();
+    while (renderArray.includes(i)){
+      i = getRandomNumber();
+    }
+    renderArray.push(i);
+  }
+  console.log(renderArray);
+}
+//renderimages
 function renderImages(){
-doABarrelRollIntoARenderArray();
+  maketherenderarray();
+  
   imageElOne.src = imgArray[renderArray[0]].src;
   imageElOne.alt = imgArray[renderArray[0]].name;
   imgArray[renderArray[0]].viewed++;
 
   imageElTwo.src = imgArray[renderArray[1]].src;
-  imageElOne.alt = imgArray[renderArray[1]].name;
+  imageElTwo.alt = imgArray[renderArray[1]].name;
   imgArray[renderArray[1]].viewed++;
 
   imageElThree.src = imgArray[renderArray[2]].src;
-  imageElOne.alt = imgArray[renderArray[2]].name;
+  imageElThree.alt = imgArray[renderArray[2]].name;
   imgArray[renderArray[2]].viewed++;
 }
-
-  
-
-  //console.log(imgArray);
-
-
-
-//random numbers
-function randomNumber() {
-  var num = Math.floor(Math.random() * Math.floor(imgArray.length));
-  return num;
-}
-
-
-function doABarrelRollIntoARenderArray() {
-  while (renderArray.length < 3) {
-    var i = randomNumber();
-    while (renderArray.includes(i)) {
-      i = randomNumber();
-    }
-    renderArray.push(i);
-
-  } 
-  //console.log(renderArray);
-}
-
-//chart
-
-
-
-
-//event handler/listener for tha UNbroken thing
-container.addEventListener('click',eventHandler);
-
-function eventHandler(event) {
-  click++;
-  var clickevent = event.target.alt;
+//renderlist
+function renderList(){
   for (var i = 0; i < imgArray.length; i++){
-    if(clickevent === imgArray[i].name){
+    var liEl = document.createElement('li');
+    liEl.textContent = `${imgArray[i].name} had ${imgArray[i].clicked} votes and was shown${imgArray[i].viewed} times.`;
+    list.appendChild(liEl);
+  }
+}
+//renderChart
+
+
+
+
+//event listener/handler
+myContainer.addEventListener('click',eventHandler);
+
+function eventHandler(event){
+  clicks++;
+  var clickedthing = event.target.alt;
+
+  for (var i = 0; i < imgArray.length; i++){
+    if(clickedthing === imgArray[i].name){
       imgArray[i].clicked++;
     }
   }
-  
- //remove event listener
-  if (click === clickTillYouCantClickNoMore) {
-    container.removeEventListener('clicks', eventHandler);
 
+  renderImages();
 
-    //render results
-    for (i = 0; i < imgArray.length; i++) {
-      var clickedAmount = document.createElement('p');
-      clickedAmount.textContent = `${imgArray[i].name}, clicked ${imgArray[i].clicked} times, viewed ${imgArray[i].viewed} times.`;
-      section.append(clickedAmount);
-    }
+  if (clicks === enoughClicks){
+    myContainer.removeEventListener('click', eventHandler);
+    renderList();
   }
 
 }
 
 
 
-renderImages(); //calling functions
 
-
-
+//call'em
+renderImages()
 
 
 

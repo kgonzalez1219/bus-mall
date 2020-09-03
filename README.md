@@ -17,4 +17,6 @@ commit 13 - added img 3 event listener and tinkered with click variable.
 commit 14 - added results render
 //branch 3
 commit 15 - edited randomNumber function
+commit 16 - fix view/click funtionality
+commit 17 - overhaul due to rebreaking
 
