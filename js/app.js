@@ -4,7 +4,7 @@
 var imgArray = [];
 var renderArray = [];
 var clicks = 0;
-var enoughClicks = 5;
+var enoughClicks = 25;
 var section = document.getElementById('results');
 var list = document.getElementById('list');
 var myContainer = document.getElementById('container');
@@ -59,15 +59,15 @@ function getRandomNumber(){
   
 //maketherenderarray
 function maketherenderarray(){
-  while (renderArray.length > 0){
+  while (renderArray.length > 3){
     renderArray.pop();
   }
-  while (renderArray.length < 3){
+  while (renderArray.length < 6){
     var i = getRandomNumber();
     while (renderArray.includes(i)){
       i = getRandomNumber();
     }
-    renderArray.push(i);
+    renderArray.unshift(i);
   }
   console.log(renderArray);
 }
